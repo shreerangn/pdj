@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<!-- head -->
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purva Dohale J1</title>
+</head>
+<!-- body -->
+<body onload="main()">
+    <!-- <button name="test" title="click me">ClickMe</button> -->
+    <div style="display: flex; justify-content: center;" id="myContainer">
+        <canvas id="AMC" width="800" height="600">
+        <!-- <canvas id="AMC" width="90%" height="90%"> -->
+            Your Browser Does Not Support HTML5 Canvas Element
+        </canvas>
+        <!-- <iframe id="scene2" name="scene2" display="none"
+             width="800" height="600"></iframe> -->
+    </div>
+    <div name="cut2" hidden="true">
+        <a onclick="showScene1();">scene1</a>
+        <a id="idLnkScene2" href="../02-ThreeJS_Anim/Canvas.html" target="scene2" onclick="showScene2();">birdsss</a>
+    </div>
+    <!-- script -->
+    <script src="gl-matrix-min.js"></script>
+    <script src="Sphere.js"></script>
+    <script src="Mesh.js"></script>
+    <script src="Canvas.js"></script>
+</body>
+</html> 

@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Purva Dohale</title>
+    <!-- <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style type="text/css">
+        body {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 0;
+            margin: 0;
+            overflow: scroll;
+            text-align: center;
+            color: white;
+        }
+
+        .navbar {
+            background-color: goldenrod;
+            border-radius: 5px;
+            padding-left: 5%;
+            padding-right: 5%;
+        }
+
+        .navbar ul {
+            overflow: auto;
+        }
+
+        .navbar li {
+            float: left;
+            list-style: none;
+            margin: 15px 20px;
+            width: 15%;
+            font-weight: bold;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: medium;
+        }
+
+        .navbar li a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .navbar li a:hover {
+            color: white;
+            background-color: black;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            padding-left: 10px;
+            padding-right: 10px;
+            border-radius: 0px;
+        }
+
+        .addr {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: large;
+            font-weight: normal;
+            color: yellow;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        div.tym {
+            margin-left: 35%;
+            margin-right: 35%;
+        }
+
+        div.tym>h1 {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: xx-large;
+            font-weight: normal;
+            color: hotpink;
+        }
+
+        div.tym>h2 {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: x-large;
+            font-weight: normal;
+            color: hotpink;
+        }
+
+        div.tym>h3 {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: large;
+            font-weight: normal;
+            color: hotpink;
+        }
+
+        #idImgInvite {
+            width: 600;
+            height: 800; 
+        }
+
+        #idMap {
+            width: 600;
+            height: 450; 
+        }
+        /* 
+        Extra small devices (phones, 600px and down) 
+        */
+        @media only screen and (max-width: 600px) {
+            .navbar {
+                border-radius: 1px;
+                padding-left: 1%;
+                padding-right: 1%;
+            }
+
+            nav {
+                flex-direction: column;
+            }
+
+            nav ul {
+                flex-direction: column;
+                overflow: scroll;
+                /* padding-top: 0.5rem; */
+            }
+
+            nav li {
+                /* padding: 0.5rem 0; */
+                margin: 1px 2px;
+                width: 5%;
+            }
+
+            .navbar li a:hover {
+                padding-top: 2px;
+                padding-bottom: 2px;
+                padding-left: 1px;
+                padding-right: 1px;
+            }
+
+            div.tym {
+                margin: 5%;
+            }
+            
+            #idImgInvite {
+                width: 400;
+                height: 600;
+                margin-left: 220px;
+            }
+
+            #idMap {
+                width: 400;
+                height: 400; 
+            }
+        }
+    </style>
+    <style>
+        li.cntr span {
+            text-align: center;
+            font-size: 60px;
+            margin-left: 0px;
+            margin-top: 10px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .uom {
+            text-align: center;
+            font-size: 25px;
+            margin: 0px;
+        }
+
+        li.cntr {
+            display: inline-block;
+        }
+
+        li span {
+            display: block;
+        }
+
+        ul.myClock {
+            padding-inline-start: 10px;
+            padding-inline-end: 10px;
+        }
+
+        /* 
+        Extra small devices (phones, 600px and down) 
+        */
+        @media only screen and (max-width: 600px) {            
+            li.cntr span {
+                font-size: 36px;
+                margin-left: 0px;
+                margin-top: 2px;
+                margin-right: 2px;
+                margin-bottom: 2px;
+            }
+
+            .uom {
+                font-size: 18px;
+            }
+
+            ul.myClock {
+                padding-inline-start: 2px;
+                padding-inline-end: 2px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <ul>
+                <li><a href="#inv" id="idInvite" onclick="handleClick(event)">Invitation</a></li>
+                <li><a href="#dt" id="idDate" onclick="handleClick(event)">Date</a></li>
+                <li><a href="#loc" id="idLoc" onclick="handleClick(event)">Venue</a></li>
+                <li><a href="#reg" id="idRegister" onclick="handleClick(event)">Wish To Come</a></li>
+                <li><a href="#pro" id="idPromo" onclick="handleClick(event)">Promo</a></li>
+                <li><a id="idMusic" onclick="handleClick(event)">Music</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div style="display: flex; justify-content: center; margin-top: 5px; margin-bottom: 10px;" class="myInvitation" hidden="true">
+        <img id="idImgInvite" src="invitation.jpg" class="myInvitation" hidden="true">
+        <!-- width="500" height="450" -->
+    </div>
+
+    <div id="idDateInfo" class="myClock tym" hidden="true"
+        style="border: dashed; border-color: greenyellow;">
+        <h2>Eagerly waiting to host you on</h2>
+        <h1>Sunday, 29 Jan 2023</h1>
+        <h3>Evening 06:00 Onwards</h3>
+        <h3>Time left to the event</h3>
+    </div>
+    <div style="display: flex; justify-content: center;">
+        <ul class="myClock" hidden="true"
+            style="background-color: silver; border: solid; border-width: 5px; border-color: darkgray; opacity: 0.9;">
+            <li class="cntr uom"><span id="d">1</span>Days</li>
+            <li class="cntr uom"><span id="h">2</span>Hours</li>
+            <li class="cntr uom"><span id="m">3</span>Mins</li>
+            <li class="cntr uom"><span id="s">4</span>Secs</li>
+        </ul>
+    </div>
+
+    <address class="myMap addr" hidden="true">
+        Shiv Chaitanya Hall<br>
+        Paud Road, Rambaug Colony<br>
+        Kothrud, Pune<br>
+        Maharashtra 411038<br>
+        <!-- INDIA<br> -->
+        <br>
+        Landmark: Near Cafe Durga<br>
+        MIT Engg College Road<br>
+        Behind Chaitanya Health Club
+    </address>
+    <iframe
+        id="idMap"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.3863435792764!2d73.81362527444584!3d18.5114354694547!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf979759b25b%3A0x5fa9e65afd0992e0!2sShiv%20Chaitanya%20Hall!5e0!3m2!1sen!2sin!4v1673289578678!5m2!1sen!2sin"
+        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade" class="myMap" hidden="true">
+        Loading…
+    </iframe>
+
+    <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLSfaBQa10WThM0I8V1jywhiATYNDktD6GOPAX41CLhCwWM0QjQ/viewform?embedded=true"
+        width="640" height="550" frameborder="0" marginheight="0" marginwidth="0" class="myRegister" hidden="true">
+        Loading…
+    </iframe>
+
+    <!-- <div name="myFrame20" width="800" height="600"></div>
+    <iframe
+        src="../09-Scene2_MoonNightOut/Canvas.html" name="myFrame"
+        width="800" height="600" style="border:10px solid white; position: relative; top: -400px;" frameborder="5" class="myPromo" hidden="false">
+        Loading…
+    </iframe> -->
+    <div style="display: flex; justify-content: center;">
+        <a class="myPromo addr" hidden="true" href="scene1/Canvas.html" target="_blank">WATCH PROMO</a>
+    </div>
+
+    <audio id="aud1">
+        <source src="aud1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="aud2">
+        <source src="aud2.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="aud3">
+        <source src="aud3.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="aud4">
+        <source src="aud4.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="aud5">
+        <source src="aud5.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        class AudioUtility {
+            constructor(audioElemId) {
+                this._audioElement = document.getElementById(audioElemId);
+            }
+
+            playAudio() {
+                this._audioElement.play();
+            }
+
+            pauseAudio() {
+                this._audioElement.pause();
+            }
+        }
+        var aud1 = new AudioUtility("aud1");
+        var aud2 = new AudioUtility("aud2");
+        var aud3 = new AudioUtility("aud3");
+        var aud4 = new AudioUtility("aud4");
+        var aud5 = new AudioUtility("aud5");
+        // setTimeout(function () { aud1.playAudio(); }, 1000);
+
+        setTimeout(hideLoading, 3000);
+
+        function hideLoading() {
+            let loader = document.getElementById("loading");
+            if (loader !== undefined && loader !== null) {
+                loader.style.display = "none";
+            }
+        }
+
+        var audContext;
+        var isAudioOff = true;
+        window.onload = function (e) {
+            let current = window.location.hash;
+            if(current == ''){
+                current = '#inv';
+                window.location.hash = current;
+            }
+
+            switch (current) {
+                case "#loc":
+                    hideByClass(false, "myMap");
+                    break;
+
+                case "#dt":
+                    hideByClass(false, "myClock");
+                    break;
+
+                case "#reg":
+                    hideByClass(false, "myRegister");
+                    break;
+
+                case "#inv":
+                    hideByClass(false, "myInvitation");
+                    break;
+                    
+                case "#pro":
+                    hideByClass(false, "myPromo");
+                    break;
+            }
+
+            // audContext = new AudioContext();
+            // if(confirm("Turn on background music?")){
+            //     aud1.playAudio();
+            // }
+        }
+
+        function handleClick(e) {
+            let prev = window.location.hash;
+            let next = e.target.hash;
+            let audPrev;
+            let aud;
+            // console.log(e.target);
+            // console.log(e.target.hash);
+
+                switch (prev) {
+                    case "#loc":
+                        hideByClass(true, "myMap");
+                        break;
+                        
+                    case "#dt":
+                        hideByClass(true, "myClock");
+                        break;
+
+                    case "#reg":
+                        hideByClass(true, "myRegister");
+                        break;
+
+                    case "#inv":
+                        hideByClass(true, "myInvitation");
+                        break;
+                        
+                    case "#pro":
+                        hideByClass(true, "myPromo");
+                        break;
+                }
+                
+                switch (next) {
+                    case "#loc":
+                        hideByClass(false, "myMap");
+                        aud = aud3;
+                        break;
+
+                    case "#dt":
+                        hideByClass(false, "myClock");
+                        aud = aud2;
+                        break;
+
+                    case "#reg":
+                        hideByClass(false, "myRegister");
+                        aud = aud4;
+                        break;
+
+                    case "#inv":
+                        hideByClass(false, "myInvitation");
+                        aud = aud1;
+                        break;
+                    
+                    case "#pro":
+                        hideByClass(false, "myPromo");
+                        aud = aud5;
+                        break;
+
+                    // case "#aud":
+                    //     isAudioOff = !isAudioOff;
+                    //     break;
+                }
+            if(e.target.id == "idMusic"){
+                isAudioOff = !isAudioOff;
+            }
+
+            aud3.pauseAudio();
+            aud2.pauseAudio();
+            aud4.pauseAudio();
+            aud1.pauseAudio();
+            aud5.pauseAudio();
+
+            if(isAudioOff){
+                document.getElementById("idMusic").style.color = "green";
+                if(e.target.id == "idMusic"){
+                    switch (prev) {
+                        case "#loc":
+                            hideByClass(false, "myMap");
+                            break;
+
+                        case "#dt":
+                            hideByClass(false, "myClock");
+                            break;
+
+                        case "#reg":
+                            hideByClass(false, "myRegister");
+                            break;
+
+                        case "#inv":
+                            hideByClass(false, "myInvitation");
+                            break;
+                        
+                        case "#pro":
+                            hideByClass(false, "myPromo");
+                            break;
+                    }
+                }
+            }
+            else{
+                if(e.target.id == "idMusic"){
+                    switch (prev) {
+                        case "#loc":
+                            hideByClass(false, "myMap");
+                            aud = aud3;
+                            break;
+
+                        case "#dt":
+                            hideByClass(false, "myClock");
+                            aud = aud2;
+                            break;
+
+                        case "#reg":
+                            hideByClass(false, "myRegister");
+                            aud = aud4;
+                            break;
+
+                        case "#inv":
+                            hideByClass(false, "myInvitation");
+                            aud = aud1;
+                            break;
+                        
+                        case "#pro":
+                            hideByClass(false, "myPromo");
+                            aud = aud5;
+                            break;
+                    }
+                }
+                aud.playAudio();
+                document.getElementById("idMusic").style.color = "red";
+            }
+        }
+
+        function hideByClass(hide, cls) {
+            let eList = document.getElementsByClassName(cls);
+            for (var i = 0; i < eList.length; i++) {
+                eList[i].hidden = hide;
+            }
+        }
+
+        // setInterval(() => {
+        //     var dtInfo = document.getElementById("idDateInfo");
+        //     if(dtInfo.style.border = dtInfo.style.border == "dashed"){
+        //         dtInfo.style.border = "none";
+        //         dtInfo.style.border.color = greenyellow;
+        //     }else{
+        //         dtInfo.style.border = "dashed";
+        //         dtInfo.style.border.color = black;
+        //     }
+        // }, 3000);
+    </script>
+
+    <script>
+        // Set the date we're counting down to
+        var countDownDate = new Date("2023-01-29T18:00:00.000+05:30").getTime();
+
+        // Update the count down every 1 second
+        var x = setInterval(function () {
+            // Get today's date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now and the count down date
+            var distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Output the result in an element with id=d,h,m,s        
+            document.getElementById("d").innerText = days.toString().padStart(2, "0") + "  :";
+            document.getElementById("h").innerText = hours.toString().padStart(2, "0") + "  :";
+            document.getElementById("m").innerText = minutes.toString().padStart(2, "0") + "  :";
+            document.getElementById("s").innerText = seconds.toString().padStart(2, "0");
+
+            // If the count down is over, write some text 
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("demo").innerHTML = "EXPIRED";
+            }
+        }, 1000);
+    </script>
+
+</body>
+
+</html>
