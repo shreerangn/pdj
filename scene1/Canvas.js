@@ -223,8 +223,6 @@ function init() {
         "outTexcoord = vTexcoord;" +
         "outBlend = u_blend;" +
 		"}";
-		// "uniform mat4 u_mvp_matrix;" +
-		// "	gl_Position = u_mvp_matrix * vPosition;" +
 
     vertexShaderObject = gl.createShader(gl.VERTEX_SHADER);
     gl.shaderSource(vertexShaderObject, vertexShaderSourceCode);
@@ -294,7 +292,6 @@ function init() {
         "   Texture = texture(uSampler,outTexcoord);" +
 		"	FragColor = Texture * vec4(1.0,1.0,1.0, outBlend) * vec4(phong_ads_light, outBlend);" +
 		"}";
-		// "	FragColor = Texture * outColor * vec4(phong_ads_light, 1.0);" +
 
     fragmentShaderObject = gl.createShader(gl.FRAGMENT_SHADER);
     gl.shaderSource(fragmentShaderObject, fragmentShaderSourceCode);
@@ -421,7 +418,6 @@ function init() {
     gl.bindVertexArray(null);
 
     // get MVP uniform location 
-    // mvpUniform = gl.getUniformLocation(shaderProgramObject, "u_mvp_matrix");
     samplerUniform = gl.getUniformLocation(shaderProgramObject, "uSampler");
     modelUniform = gl.getUniformLocation(shaderProgramObject, "u_model_matrix");
     viewUniform = gl.getUniformLocation(shaderProgramObject, "u_view_matrix");
@@ -502,9 +498,6 @@ function draw() {
 
     mat4.identity(camera);    
     mat4.translate(camera, camera, [-cameraX, cameraY, -cameraZ]);
-    // mat4.rotateX(camera, degToRad(angleOfSunRevolution), camera);   
-    // mat4.rotateY(camera, degToRad(-ang), camera);   
-    // mat4.rotateZ(camera, degToRad(roll), camera);
     
     mat4.identity(viewMatrix);
     mat4.multiply(viewMatrix, viewMatrix, camera);
@@ -564,7 +557,6 @@ function draw() {
     light_position[9] = DISTANCE_LIGHT * Math.sin(degToRad(180.0));
     gl.uniform4fv(selectedUniforms.lightPositionUniform, light_position); // light position
 
-    // gl.uniform1i(selectedUniforms.LKeyPressedUniform, 0);
     // bind with texture
     gl.bindTexture(gl.TEXTURE_2D, texture_earth);
     gl.uniform1i(samplerUniform, 0);
@@ -611,31 +603,28 @@ function draw() {
     sphere.draw();
     gl.bindTexture(gl.TEXTURE_2D, null);
 
-    // if(!scene_2)
-    {
-        // 4] Cosmos
-        modelMatrix = mat4.create();
-        mat4.identity(modelMatrix);
-            
-        mat4.translate(modelMatrix, modelMatrix, [0.0, 0.0, -5.0]);
-        mat4.scale(modelMatrix, modelMatrix, [14.950, 3.0, 1.0]); // stars_1
+    // 4] Cosmos
+    modelMatrix = mat4.create();
+    mat4.identity(modelMatrix);
+        
+    mat4.translate(modelMatrix, modelMatrix, [0.0, 0.0, -5.0]);
+    mat4.scale(modelMatrix, modelMatrix, [14.950, 3.0, 1.0]); // stars_1
 
-        gl.uniformMatrix4fv(modelUniform, false, modelMatrix);
-        gl.uniformMatrix4fv(viewUniform, false, viewMatrix);
-        gl.uniformMatrix4fv(projectionUniform, false, projectionMatrix);
-        
-        gl.uniform1i(selectedUniforms.LKeyPressedUniform, 0);
-        gl.uniform1f(blendUniform, blendScene2);
-        // bind with texture
-        gl.bindTexture(gl.TEXTURE_2D, texture_cosmos);
-        gl.uniform1i(samplerUniform, 0);
-        
-        gl.bindVertexArray(vao_cube);
-        gl.drawArrays(gl.TRIANGLE_FAN, 0, 4);
-        
-        gl.bindVertexArray(null);
-        gl.bindTexture(gl.TEXTURE_2D, null);
-    }
+    gl.uniformMatrix4fv(modelUniform, false, modelMatrix);
+    gl.uniformMatrix4fv(viewUniform, false, viewMatrix);
+    gl.uniformMatrix4fv(projectionUniform, false, projectionMatrix);
+    
+    gl.uniform1i(selectedUniforms.LKeyPressedUniform, 0);
+    gl.uniform1f(blendUniform, blendScene2);
+    // bind with texture
+    gl.bindTexture(gl.TEXTURE_2D, texture_cosmos);
+    gl.uniform1i(samplerUniform, 0);
+    
+    gl.bindVertexArray(vao_cube);
+    gl.drawArrays(gl.TRIANGLE_FAN, 0, 4);
+    
+    gl.bindVertexArray(null);
+    gl.bindTexture(gl.TEXTURE_2D, null);
 
     gl.useProgram(null);
 
@@ -645,7 +634,7 @@ function draw() {
         }
         else{
             if(scene_3){
-                // showScene2();
+
             }
             else{
                 update();
@@ -684,13 +673,6 @@ function update(){
                 cameraX += (0.00055 * speedFactor);
             }
             else{
-                // if(cameraZ >= -3.9){
-                //     cameraZ -= 0.001;
-                //     cameraX += 0.00055;
-                // }
-                // // console.log(cameraX);
-                // // if(cameraX <= 11.55)
-                //     // cameraX += 0.001;
                 scene_2 = true;
                 angleRotationMoonLight = -30.0;
             }
@@ -709,8 +691,6 @@ function update_scene_2(){
 
     if(angleRotationMoonLight <= 300.0)
         angleRotationMoonLight = angleRotationMoonLight + 0.50;
-    // if(angleRotationMoonLight >= 360.0)
-    //     angleRotationMoonLight = 0.0;
     else{
         if(fadeOutScene2 >= 0)
             fadeOutScene2 -= 0.01;
@@ -851,19 +831,11 @@ function degToRad(degrees){
 } 
 
 function showScene2(){
-    // document.getElementById('AMC').hidden=true;
-    // document.getElementById('scene2').hidden=false;
-    // document.getElementById('AMC').display=none;
-    // document.getElementById('scene2').display=true;
     var myContainer = document.getElementById('myContainer');
     myContainer.innerHTML = '<iframe id="scene2" name="scene2" width="800" height="600" scrolling="no" frameborder="0" src="../scene2/Canvas.html"></iframe>';
 }
 
 function showScene1(){
-    // document.getElementById('scene2').hidden=true;
-    // document.getElementById('AMC').hidden=false;
-    // document.getElementById('scene2').display=none;
-    // document.getElementById('AMC').display=true;
     var myContainer = document.getElementById('myContainer');
     myContainer.innerHTML = '<canvas id="AMC" width="800" height="600">Your Browser Does Not Support HTML5 Canvas Element</canvas>';
 }

@@ -1,4 +1,14 @@
-﻿<!DOCTYPE html>
+﻿<!--
+    NOTE: I'm aware this is not at all good implementation.
+    HTML, CSS, Scripts are kept together, has tight coupling
+    and inline css. Not only this but also you will find dozens of 
+    caveats. This is not Production implementation.
+    This work is meant to address personal problem on adhoc 
+    need basis. Rather than going through nervousness I chose
+    to enjoy this implementation keeping feelings at the center
+    and not technicalities.
+ -->
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -10,10 +20,10 @@
 <script>
 
   var scene = new THREE.Scene()
-  var camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight,.1, 100)
+  var camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight,.1, 1000)
   var renderer = new THREE.WebGLRenderer()
   camera.position.x = 0
-  camera.position.y = -10
+  camera.position.y = 10
   camera.position.z = 40
 
   renderer.setClearColor(0x87CEEB) //0xdddddd
@@ -36,7 +46,7 @@
 
   var spotlight = new THREE.SpotLight(0xffffff) // This is the main spotlight color
   spotlight.castShadow = true
-  spotlight.position.set(0,-60,30) // This is the main spotlight position
+  spotlight.position.set(0,20,90) // This is the main spotlight position
 
   // scene.add(plane)
   scene.add(spotlight)
@@ -49,8 +59,6 @@
   var render = function () {
     increment += 0.01
     requestAnimationFrame( render );
-    cube.position.y += Math.sin(increment) * 0.05
-    cube.rotation.y +=  0.01
 
     spinCamera()
     renderer.render(scene, camera);
@@ -96,15 +104,13 @@
       }
     }
 
-    // rotation += 0.005
-    camera.position.y = Math.sin(rotation) * 80;
-    camera.position.z = Math.cos(rotation) * 80;
+    camera.position.y = 20 - Math.sin(rotation) * 80;
+    camera.position.z = 50 + Math.cos(rotation) * 80;
     camera.lookAt(scene.position)
   }
 
   function loadFont() {
     var loader = new THREE.FontLoader();
-    // loader.load('helvetiker_regular.typeface.js', function (res) {
     loader.load('Aparajita_Regular.js', function (res) {
       font = res;
       createText();
@@ -133,7 +139,7 @@
 
     var text = new THREE.Mesh(textGeo, cubeMat)
     text.position.x = -textGeo.boundingBox.max.x/2;
-    text.position.y = text.position.y + 12.0;
+    text.position.y = -7.0;
     text.castShadow = true;
     scene.add(text)
 
@@ -153,7 +159,7 @@
 
     text = new THREE.Mesh(textGeo, cubeMat)
     text.position.x = -textGeo.boundingBox.max.x/2;
-    text.position.y = text.position.y - 3.0;
+    text.position.y = text.position.y - 22.0;
     text.castShadow = true;
     scene.add(text)
 
@@ -173,7 +179,7 @@
 
     text = new THREE.Mesh(textGeo, cubeMat)
     text.position.x = -textGeo.boundingBox.max.x/2;
-    text.position.y = text.position.y - 15.0;
+    text.position.y = text.position.y - 35.0;
     text.castShadow = true;
     scene.add(text)
   }

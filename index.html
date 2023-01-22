@@ -1,3 +1,13 @@
+<!--
+    NOTE: I'm aware this is not at all good implementation.
+    HTML, CSS, Scripts are kept together, has tight coupling
+    and inline css. Not only this but also you will find dozens of 
+    caveats. This is not Production implementation.
+    This work is meant to address personal problem on adhoc 
+    need basis. Rather than going through nervousness I chose
+    to enjoy this implementation keeping feelings at the center
+    and not technicalities.
+ -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -217,7 +227,6 @@
 
     <div style="display: flex; justify-content: center; margin-top: 5px; margin-bottom: 10px;" class="myInvitation" hidden="true">
         <img id="idImgInvite" src="invitation.jpg" class="myInvitation" hidden="true">
-        <!-- width="500" height="450" -->
     </div>
 
     <div id="idDateInfo" class="myClock tym" hidden="true"
@@ -242,7 +251,6 @@
         Paud Road, Rambaug Colony<br>
         Kothrud, Pune<br>
         Maharashtra 411038<br>
-        <!-- INDIA<br> -->
         <br>
         Landmark: Near Cafe Durga<br>
         MIT Engg College Road<br>
@@ -262,12 +270,6 @@
         Loading…
     </iframe>
 
-    <!-- <div name="myFrame20" width="800" height="600"></div>
-    <iframe
-        src="../09-Scene2_MoonNightOut/Canvas.html" name="myFrame"
-        width="800" height="600" style="border:10px solid white; position: relative; top: -400px;" frameborder="5" class="myPromo" hidden="false">
-        Loading…
-    </iframe> -->
     <div style="display: flex; justify-content: center;">
         <a class="myPromo addr" hidden="true" href="scene1/Canvas.html" target="_blank">WATCH PROMO</a>
     </div>
@@ -312,7 +314,6 @@
         var aud3 = new AudioUtility("aud3");
         var aud4 = new AudioUtility("aud4");
         var aud5 = new AudioUtility("aud5");
-        // setTimeout(function () { aud1.playAudio(); }, 1000);
 
         setTimeout(hideLoading, 3000);
 
@@ -354,10 +355,6 @@
                     break;
             }
 
-            // audContext = new AudioContext();
-            // if(confirm("Turn on background music?")){
-            //     aud1.playAudio();
-            // }
         }
 
         function handleClick(e) {
@@ -365,8 +362,6 @@
             let next = e.target.hash;
             let audPrev;
             let aud;
-            // console.log(e.target);
-            // console.log(e.target.hash);
 
                 switch (prev) {
                     case "#loc":
@@ -415,10 +410,6 @@
                         hideByClass(false, "myPromo");
                         aud = aud5;
                         break;
-
-                    // case "#aud":
-                    //     isAudioOff = !isAudioOff;
-                    //     break;
                 }
             if(e.target.id == "idMusic"){
                 isAudioOff = !isAudioOff;
@@ -497,16 +488,6 @@
             }
         }
 
-        // setInterval(() => {
-        //     var dtInfo = document.getElementById("idDateInfo");
-        //     if(dtInfo.style.border = dtInfo.style.border == "dashed"){
-        //         dtInfo.style.border = "none";
-        //         dtInfo.style.border.color = greenyellow;
-        //     }else{
-        //         dtInfo.style.border = "dashed";
-        //         dtInfo.style.border.color = black;
-        //     }
-        // }, 3000);
     </script>
 
     <script>

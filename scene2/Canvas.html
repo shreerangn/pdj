@@ -1,4 +1,13 @@
-<!-- Licensed under a BSD license. See license.html for license -->
+<!--
+    NOTE: I'm aware this is not at all good implementation.
+    HTML, CSS, Scripts are kept together, has tight coupling
+    and inline css. Not only this but also you will find dozens of 
+    caveats. This is not Production implementation.
+    This work is meant to address personal problem on adhoc 
+    need basis. Rather than going through nervousness I chose
+    to enjoy this implementation keeping feelings at the center
+    and not technicalities.
+ -->
 <!DOCTYPE html>
 <html>
   <head>
@@ -75,27 +84,6 @@ function main() {
   let deltaDist_2 = 0.015;
   let deltaDist_3 = 0.02;
 
-  // {
-  //   const planeSize = 40;
-
-  //   const loader = new THREE.TextureLoader();
-  //   const texture = loader.load('https://threejs.org/manual/examples/resources/images/checker.png');
-  //   texture.wrapS = THREE.RepeatWrapping;
-  //   texture.wrapT = THREE.RepeatWrapping;
-  //   texture.magFilter = THREE.NearestFilter;
-  //   const repeats = planeSize / 2;
-  //   texture.repeat.set(repeats, repeats);
-
-  //   const planeGeo = new THREE.PlaneGeometry(planeSize, planeSize);
-  //   const planeMat = new THREE.MeshPhongMaterial({
-  //     map: texture,
-  //     side: THREE.DoubleSide,
-  //   });
-  //   const mesh = new THREE.Mesh(planeGeo, planeMat);
-  //   mesh.rotation.x = Math.PI * -.5;
-  //   scene.add(mesh);
-  // }
-
   {
     const skyColor = 0xB1E1FF;  // light blue
     const groundColor = 0xB97A20;  // brownish orange
@@ -142,56 +130,22 @@ function main() {
   {
     const gltfLoader = new GLTFLoader();
     gltfLoader.setCrossOrigin( 'anonymous' ); 
-    // .setCrossOrigin('anonymous');
-    // gltfLoader.load('https://threejs.org/manual/examples/resources/models/cartoon_lowpoly_small_city_free_pack/scene.gltf', (gltf) => {
     gltfLoader.load('1_bird_stork.glb', (gltf) => {
-    // gltfLoader.load('2_bird_flamingo.glb', (gltf) => {
-    // gltfLoader.load('3_bird_parrot.glb', (gltf) => {
-      const root = gltf.scene;
-      // scene.add(root);
-
-      // // compute the box that contains all the stuff
-      // // from root and below
-      // const box = new THREE.Box3().setFromObject(root);
-
-      // const boxSize = box.getSize(new THREE.Vector3()).length();
-      // const boxCenter = box.getCenter(new THREE.Vector3());
-
-      // // set the camera to frame the box
-      // frameArea(boxSize * 0.5, boxSize, boxCenter, camera);
-
-      // // update the Trackball controls to handle the new size
-      // controls.maxDistance = boxSize * 10;
-      // controls.target.copy(boxCenter);
-      // controls.update();
-
-      console.log(gltf);
-      const model = gltf.scene;
-      model.position.set( 0, 5, 0 );
-				// model.scale.set( 0.01, 0.01, 0.01 );
-				// model.scale.set( 0.8, 0.8, 0.8 );
+        const root = gltf.scene;
+        const model = gltf.scene;
+        model.position.set( 0, 5, 0 );
 				scene.add( model );
 
 				mixer_1 = new THREE.AnimationMixer( model );
 				mixer_1.clipAction( gltf.animations[ 0 ] ).play();
 
-				// animate();
-
-      // window.VIEWER.json = gltf;
-
-        // const scene = gltf.scene || gltf.scenes[0];
-        // const clips = gltf.animations || [];
-
         if (!(gltf.scene || gltf.scenes[0])) {
           // Valid, but not supported by this viewer.
           throw new Error(
             'This model contains no scene, and cannot be viewed here. However,'
             + ' it may contain individual 3D resources.'
           );
-        }
-        console.log(mixer_1);
-        // render();
-        
+        }        
     }, undefined, function ( error ) {
       console.log( error );
     });
@@ -200,82 +154,38 @@ function main() {
   {
     const gltfLoader = new GLTFLoader();
     gltfLoader.setCrossOrigin( 'anonymous' ); 
-    // .setCrossOrigin('anonymous');
-    // gltfLoader.load('https://threejs.org/manual/examples/resources/models/cartoon_lowpoly_small_city_free_pack/scene.gltf', (gltf) => {
-    // gltfLoader.load('1_bird_stork.glb', (gltf) => {
     gltfLoader.load('2_bird_flamingo.glb', (gltf) => {
-      const root = gltf.scene;
-      // scene.add(root);
-
-      // // compute the box that contains all the stuff
-      // // from root and below
-      // const box = new THREE.Box3().setFromObject(root);
-
-      // const boxSize = box.getSize(new THREE.Vector3()).length();
-      // const boxCenter = box.getCenter(new THREE.Vector3());
-
-      // // set the camera to frame the box
-      // frameArea(boxSize * 0.5, boxSize, boxCenter, camera);
-
-      // // update the Trackball controls to handle the new size
-      // controls.maxDistance = boxSize * 10;
-      // controls.target.copy(boxCenter);
-      // controls.update();
-
-      console.log(gltf);
-      const model = gltf.scene;
-      model.position.set( 5, 5, 0 );
-				// model.scale.set( 0.01, 0.01, 0.01 );
-				// model.scale.set( 0.8, 0.8, 0.8 );
+        const root = gltf.scene;
+        const model = gltf.scene;
+        model.position.set( 5, 5, 0 );
 				scene.add( model );
 
 				mixer_2 = new THREE.AnimationMixer( model );
 				mixer_2.clipAction( gltf.animations[ 0 ] ).play();
 
-				// animate();
-
-      // window.VIEWER.json = gltf;
-
-        // const scene = gltf.scene || gltf.scenes[0];
-        // const clips = gltf.animations || [];
-
         if (!(gltf.scene || gltf.scenes[0])) {
           // Valid, but not supported by this viewer.
           throw new Error(
             'This model contains no scene, and cannot be viewed here. However,'
             + ' it may contain individual 3D resources.'
           );
-        }
-        console.log(mixer_2);
-        
+        }        
     }, undefined, function ( error ) {
       console.log( error );
     });
   }
 
-  
   {
     const gltfLoader = new GLTFLoader();
     gltfLoader.setCrossOrigin( 'anonymous' ); 
     gltfLoader.load('3_bird_parrot.glb', (gltf) => {
-      const root = gltf.scene;
-      console.log(gltf);
-      model_3 = gltf.scene;
-      model_3.position.set( -5, 5, 0 );
-      // model_3.position.set( 1 * Math.cos(degToRad(angleRotation)), 1 * Math.sin(degToRad(angleRotation)), 0 );
-				scene.add( model_3 );
+        const root = gltf.scene;
+        model_3 = gltf.scene;
+        model_3.position.set( -5, 5, 0 );
+        scene.add( model_3 );
 
-      mixer_3 = new THREE.AnimationMixer( model_3 );
-      mixer_3.clipAction( gltf.animations[ 0 ] ).play();
-      console.log(mixer_3);
-
-      //const model_4 = gltf.scene.clone();
-      //model_4.position.set( -6.75, 5.28, 0 );
-      //scene.add( model_4 );
-				//mixer_4 = new THREE.AnimationMixer( model_4 );
-        //console.log(mixer_4);
-		//		mixer_4.clipAction( gltf.animations[ 0 ] ).play();
-		
+        mixer_3 = new THREE.AnimationMixer( model_3 );
+        mixer_3.clipAction( gltf.animations[ 0 ] ).play();
         
         if (!(gltf.scene || gltf.scenes[0])) {
           // Valid, but not supported by this viewer.
@@ -284,35 +194,10 @@ function main() {
             + ' it may contain individual 3D resources.'
           );
         }
-
-      // model_3 = gltf.scene;
-      // // const mesh = gltf.scene.getObjectByName('Scene');
-      // // const geometry = mesh.geometry.clone();
-      // // const material = mesh.material;
-      // // const birdMesh = new THREE.InstancedMesh(geometry, material, 10);
-      // const material = new THREE.MeshLambertMaterial();
-      // const birdMesh = new THREE.InstancedMesh(model_3, material, 10);
-      // scene.add(birdMesh);
-
-      // const dummy = new THREE.Object3D();
-      // for(let i = 0; i < 10; i++){
-      //   dummy.position.x = Math.random() * 40 -20;
-      //   dummy.position.y = Math.random() * 40 -20;
-      //   dummy.position.z = Math.random() * 40 -20;
-        
-      //   dummy.rotation.x = Math.random() * 2 * Math.PI;
-      //   dummy.rotation.y = Math.random() * 2 * Math.PI;
-      //   dummy.rotation.z = Math.random() * 2 * Math.PI;
-
-      //   dummy.updateMatrix();
-      //   birdMesh.setMatrixAt(i, dummy.matrix);
-      //   birdMesh.setColorAt(i, new THREE.Color(Math.random() * 0xFFFFF));
-      // }
     }, undefined, function ( error ) {
       console.log( error );
     });
   }
-  
   
   {
     const gltfLoader = new GLTFLoader();
@@ -320,34 +205,10 @@ function main() {
     gltfLoader.load('3_bird_parrot.glb', (gltf) => {
       const model = gltf.scene;
       model.position.set( Math.random() * 40 -20, Math.random() * 40 -20, Math.random() * 40 -20 );
-		scene.add( model );
+		  scene.add( model );
 
       mixer_4 = new THREE.AnimationMixer( model );
       mixer_4.clipAction( gltf.animations[ 0 ] ).play();
-	  
-      // model_3 = gltf.scene;
-      // // const mesh = gltf.scene.getObjectByName('Scene');
-      // // const geometry = mesh.geometry.clone();
-      // // const material = mesh.material;
-      // // const birdMesh = new THREE.InstancedMesh(geometry, material, 10);
-      // const material = new THREE.MeshLambertMaterial();
-      // const birdMesh = new THREE.InstancedMesh(model_3, material, 10);
-      // scene.add(birdMesh);
-
-      // const dummy = new THREE.Object3D();
-      // for(let i = 0; i < 10; i++){
-      //   dummy.position.x = Math.random() * 40 -20;
-      //   dummy.position.y = Math.random() * 40 -20;
-      //   dummy.position.z = Math.random() * 40 -20;
-        
-      //   dummy.rotation.x = Math.random() * 2 * Math.PI;
-      //   dummy.rotation.y = Math.random() * 2 * Math.PI;
-      //   dummy.rotation.z = Math.random() * 2 * Math.PI;
-
-      //   dummy.updateMatrix();
-      //   birdMesh.setMatrixAt(i, dummy.matrix);
-      //   birdMesh.setColorAt(i, new THREE.Color(Math.random() * 0xFFFFF));
-      // }
     }, undefined, function ( error ) {
       console.log( error );
     });
@@ -394,8 +255,7 @@ function main() {
     else
       console.log('no mixer 3');
     
-      controls.update();
-    // stats.update();
+    controls.update();
 
     if(mixer_4)
       mixer_4.update( delta );
@@ -409,31 +269,10 @@ function main() {
     if(angleRotation >= 360.0)
         angleRotation = 0.0;
 
-    // rot = (angleRotation >= 90.0 && angleRotation <= 270) ? 
-    //       (-1.0 * Math.sin(degToRad(angleRotation))) : 
-    //       (1.0 * Math.sin(degToRad(angleRotation-180)));
-    // if(angleRotation >= 90.0 && angleRotation <= 270){
-    //   rot = -1.0 * Math.sin(degToRad(angleRotation));
-    //   angleRotationReverse -= 0.50;
-    //   flag = true;
-    // }
-    // else{
-    //   rot = -1.0 * Math.sin(degToRad(angleRotationReverse));
-    //   angleRotationReverse += 0.50;
-    //   flag = false;
-    // }
-    // if(angleRotation >= 180){
-    //   clockwise = true;
-    // }else{
-    //   clockwise = false;
-    // }
-
     if(clockwise){
-      // angleRotation = angleRotation - 0.5;
       if(angleRotation <= 90)
         clockwise = false
     }else{
-      // angleRotation = angleRotation + 0.5;
       if(angleRotation >= 270)
         clockwise = true;
     }
@@ -475,34 +314,13 @@ function main() {
 		angleRotationBirdDirection_3 -= 0.2777;
 	}
 	
-    // if(mixer_3){
-    //   model_3.position.set( 5 * Math.cos(degToRad(angleRotation)), 2 + deltaDist, -5 * Math.sin(degToRad(angleRotation)) );
-    //   // model_3.rotation.set( 0, rot, 0);
-    //   // model_3.position.set( 5 , 2, 5 );
-    //   // model_3.rotation.set( 0, (clockwise? -1 : 1) * Math.PI * Math.sin(degToRad(angleRotation)), 0);
-    //   model_3.rotation.set( 0, -Math.PI * Math.sin(degToRad(angleRotation)), 50);
-    //   // model_3.rotation.set( 0, -Math.PI * Math.sin(degToRad(90)), 0);
-    // }
-    // updateMV(mixer_1);
-    // updateMV(mixer_2);
-    // updateMV(mixer_3);
-	
     if(mixer_1){
       mixer_1._root.position.set( 10 * Math.cos(degToRad(angleRotation+90)), 7 + deltaDist_2, -10 * Math.sin(degToRad(angleRotation+90)) );
       mixer_1._root.rotation.set( 0, -Math.PI * Math.sin(degToRad(angleRotationBirdDirection_1)), 50);
 	}
     if(mixer_2){
       mixer_2._root.position.set( 6 * Math.cos(degToRad(angleRotation+180)), 5 + deltaDist_2, -6 * Math.sin(degToRad(angleRotation+180)) );
-      // mixer_2._root.rotation.set( 0, -Math.PI * Math.sin(degToRad(angleRotation)), 50);
-      // mixer_2._root.rotation.set( 0, -Math.PI * Math.sin(degToRad(30)), 50); // TESTED WORKING
       mixer_2._root.rotation.set( 0, -Math.PI * Math.sin(degToRad(angleRotationBirdDirection_2)), 50);
-	  // 30, 0, -30, -80, (80 to 30 decr)
-	  // Sampling: each quadrant of 90, but incr by 0.5.
-	  // Thus total steps in a quadrant = 90 * 2 = 180 samples
-	  // 30 - 0 = 30
-	  // 30/180 = 0.1667 ... 1]
-	  // 80 - 30 = 50
-	  // 50/180 = 0.2777 ... 2]
     }
     if(mixer_3){
       mixer_3._root.position.set( 8 * Math.cos(degToRad(angleRotation+270)), 6 + deltaDist_3, -8 * Math.sin(degToRad(angleRotation+270)) );
@@ -516,12 +334,10 @@ function main() {
 
   function updateMV(t_mix){
     if(clockwise){
-      // angleRotation = angleRotation - 0.5;
       deltaDist += 0.001;
       if(angleRotation <= 90)
         clockwise = false
     }else{
-      // angleRotation = angleRotation + 0.5;
       deltaDist -= 0.001;
       if(angleRotation >= 270)
         clockwise = true;
@@ -535,8 +351,6 @@ function main() {
 
   requestAnimationFrame(render);
 }
-
-
 
 main();
 
