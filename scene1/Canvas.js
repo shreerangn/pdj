@@ -657,9 +657,9 @@ function draw() {
     requestAnimationFrame(draw, canvas);
 }
 
-var speedFactor = 2.0;
+var speedFactor = 4.0;
 function update(){
-    angleOfEarthRevolution = angleOfEarthRevolution + 0.175; // FINAL
+    angleOfEarthRevolution = angleOfEarthRevolution + 0.3; // FINAL
     if(angleOfEarthRevolution >= 360.0)
         angleOfEarthRevolution = 0.0;
         
@@ -668,7 +668,7 @@ function update(){
         angleOfSunRevolution = 0.0;
 
     if(cameraX <= 10.250){
-        cameraX += 0.006; // FINAL
+        cameraX += 0.02; // FINAL
     }
     else
     {
@@ -708,12 +708,12 @@ function update_scene_2(){
     }
 
     if(angleRotationMoonLight <= 300.0)
-        angleRotationMoonLight = angleRotationMoonLight + 0.250;
+        angleRotationMoonLight = angleRotationMoonLight + 0.50;
     // if(angleRotationMoonLight >= 360.0)
     //     angleRotationMoonLight = 0.0;
     else{
         if(fadeOutScene2 >= 0)
-            fadeOutScene2 -= 0.001;
+            fadeOutScene2 -= 0.01;
         else{
             scene_2 = false;
             scene_3 = true;
@@ -722,7 +722,7 @@ function update_scene_2(){
     }
     
     if(blendScene2 >= 0.1)
-        blendScene2 -= 0.001;
+        blendScene2 -= 0.01;
 }
 
 function uninitialize() 
