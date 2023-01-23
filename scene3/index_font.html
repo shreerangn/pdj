@@ -65,6 +65,14 @@
   };
   loadFont()
   render();
+  setTimeout(quitPromo, 13700)
+
+  function quitPromo() {
+    window.parent.parent.document.getElementById("audS2S3").pause();
+    // close our application's tab 
+    window.close(); // may not work in Firefox but works in Safari and chrome
+		window.location.replace("about:blank"); // removes history from session, so no navigation on back button
+  }
 
   /*
   HELPERS

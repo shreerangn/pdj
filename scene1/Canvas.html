@@ -7,12 +7,59 @@
     <title>Purva Dohale J1</title>
 </head>
 <!-- body -->
-<body onload="main()">
+<body>
+    <style>
+        .div-container {
+            display: flex; 
+            justify-content: center; 
+            background-color: gray; 
+            margin-left: 15%; 
+            margin-right: 15%; 
+            padding: 5rem; 
+            border-radius: 1rem;
+            border: 0.2rem gold solid;
+        }
+        .btn {
+            margin-left: 1em; 
+            font-size: larger; 
+            font-weight: bolder; 
+            border: 5px dark black; 
+            border-radius: 0.5rem; 
+            width: 5rem; 
+            color: white; 
+            height: 3rem;
+            margin-top: 0.5rem;
+            cursor: grab;
+        }
+        .btn-yes {
+            background-color: green;
+        }
+        .btn-no {
+            background-color: red;
+        }
+    </style>
+
+    <div id="idMusicConfirm">
+        <div class="div-container">
+            <p><h2 style="color: yellow;">Music?</h2></p>
+            <button onclick="playMusicAndStart()" class="btn btn-yes">Yes</button>
+            <button onclick="startAnimation()" class="btn btn-no">No</button>
+        </div>
+    </div>
     <div style="display: flex; justify-content: center;" id="myContainer">
         <canvas id="AMC" width="800" height="600">
             Your Browser Does Not Support HTML5 Canvas Element
         </canvas>
     </div>
+
+    <audio id="audS1" loop="true">
+        <source src="../aud5.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="audS2S3" loop="true">
+        <source src="../aud6.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
     <!-- script -->
     <script src="gl-matrix-min.js"></script>
