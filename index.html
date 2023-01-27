@@ -272,7 +272,7 @@
 
     <div>
         <div style="display: flex; justify-content: center;">
-            <a class="myPromo addr" hidden="true" href="scene1/Canvas.html" target="_blank">WATCH PROMO</a>
+            <a id="idWatchPromo" class="myPromo addr" hidden="true" href="scene1/Canvas.html" target="_blank" onclick="handleClick(event)">WATCH PROMO</a>
         </div>
         <div>
             <iframe 
@@ -421,6 +421,9 @@
                 }
             if(e.target.id == "idMusic"){
                 isAudioOff = !isAudioOff;
+            }
+            else if(e.target.id == "idWatchPromo"){
+                isAudioOff = true;
             }
 
             aud3.pauseAudio();

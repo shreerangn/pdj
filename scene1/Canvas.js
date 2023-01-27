@@ -43,10 +43,10 @@ var texture_cosmos = 0;
 
 var vao_cube;
 var vbo_position_cube;
-var angleOfEarthRevolution = 65.0; // For focusing on BHARAT :) \m/
+var angleOfEarthRevolution = 58.0; // For focusing on BHARAT :) \m/
 var angleOfSunRevolution = 0.0;
 var play = true;
-
+var isMusicOn = false;
 
 const DISTANCE_LIGHT = 100.0;
 var blKeyPressed=false;
@@ -138,11 +138,13 @@ function main() {
 
 function playMusicAndStart() {
     document.getElementById("audS1").play();
+    isMusicOn = true;
     startAnimation();
 }
 
 function startAnimation() {
     document.getElementById("idMusicConfirm").innerHTML = "";
+    isMusicOn = false;
     main();
 }
 
@@ -842,7 +844,10 @@ function degToRad(degrees){
 
 function showScene2(){
     document.getElementById("audS1").pause();
-    document.getElementById("audS2S3").play();
+    if(isMusicOn){
+        document.getElementById("audS2S3").play();
+    }
+    
     var myContainer = document.getElementById('myContainer');
     myContainer.innerHTML = '<iframe id="scene2" name="scene2" width="800" height="600" scrolling="no" frameborder="0" src="../scene2/Canvas.html"></iframe>';
 }
