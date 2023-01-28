@@ -144,7 +144,6 @@ function playMusicAndStart() {
 
 function startAnimation() {
     document.getElementById("idMusicConfirm").innerHTML = "";
-    isMusicOn = false;
     main();
 }
 
